@@ -14,30 +14,30 @@
 /*ボス妖怪作成のソース*/
 void	CreateBoss(void)
 {
-  const static u32 offset = ADDRESS + NEW3DS;
-	static u32 backup[YOKAI] = {0};
-	if(is_pressed(L))
-	{
-		if(is_pressed(DU))
-		{
-			for(int i=0;i<YOKAI;i++)
-			{
-				if(READU32(offset + (i * JUMP)) != BOSS[i])
-				{
-					backup[i] = READU32(offset + (i * JUMP));
-					WRITEU32(offset + (i * JUMP), BOSS[i]);
-				}
-			}
-		}
-		if(is_pressed(DD))
-		{
-			for(int i=0;i<YOKAI;i++)
-			{
-				if(backup[i] != 0)
-				{
-					WRITEU32(offset + (i *JUMP),backup[i]);
-				}
-			}
-		}
-	}
+const static u32 offset = ADDRESS + NEW3DS;
+static u32 backup[YOKAI] = {0};
+if(is_pressed(L))
+{
+  if(is_pressed(DU))
+  {
+    for(int i=0;i<YOKAI;i++)
+    {
+      if(READU32(offset + (i * JUMP)) != BOSS[i])
+      {
+        backup[i] = READU32(offset + (i * JUMP));
+        WRITEU32(offset + (i * JUMP), BOSS[i]);
+      }
+    }
+  }
+  if(is_pressed(DD))
+  {
+    for(int i=0;i<YOKAI;i++)
+    {
+      if(backup[i] != 0)
+      {
+        WRITEU32(offset + (i *JUMP),backup[i]);
+      }
+    }
+  }
+}
 }
