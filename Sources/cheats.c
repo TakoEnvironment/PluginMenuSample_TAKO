@@ -2,7 +2,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "hid.h"
-
 /**ここから下を追加してください(ここより上の部分には何が書かれてるかわかりませんが、#define SPEED ... とかは消さないで残しておいてください**/
 #include "values.h"
 #define YOKAI 62
