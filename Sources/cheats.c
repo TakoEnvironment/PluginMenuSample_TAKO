@@ -2,67 +2,19 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "hid.h"
+
+/**ここから下を追加してください(ここより上の部分には何が書かれてるかわかりませんが、#define SPEED ... とかは消さないで残しておいてください**/
 #include "values.h"
-#include <string.h>
-#include "ID.h"
 #define YOKAI 62
 #define ADDRESS 0x08758FA0
-#define SPEED 0.5
 #define JUMP 0xCC
-#define SET_ADDERSS_FOR_MAHACK 0x03C00000
+#define NEW3DS 0x03C00000 //←これはNEW3DSの場合は 0x03C00000 に。OLD3DSの場合は 0x00000000 にしてね！(NEW3ds → #define NEW3DS 0x03C00000 : OLD3ds → #define NEW3DS 0x00000000
+/**↑これらを事前に追加しておいてください**/
 
-/**妖怪をボス妖怪にするかなり雑なソースww(失敗作)**/
-void	Boss(void){
-	static unsigned int tmp = 0;
-	static u32 Y_offset = ADDRESS;
-	static u32 backup[YOKAI] = {0};
-	if(is_pressed(Y+DU)){
-		for(int i = 0;i < YOKAI;i++){
-			if(tmp != 1){
-				backup[i] = READU32(Y_offset + SET_ADDERSS_FOR_MAHACK);
-			}
-			WRITEU32(Y_offset + SET_ADDERSS_FOR_MAHACK,BOSS[i]);
-			Y_offset += 0xCC;
-		}
-		tmp = 1;
-		Y_offset = ADDRESS;
-	}
-	if(is_pressed(Y+DD)){
-		for(int i = 0;i < YOKAI;i++){
-			WRITEU32(Y_offset,backup[i]);
-			Y_offset += 0xCC;
-		}
-		Y_offset = ADDRESS;
-	}
-}
-
-void	movement(void){
-	if(is_pressed(Y)){
-		if(is_pressed(DR)){
-			WRITEFLOAT_P(0x0891D200 + SET_ADDERSS_FOR_MAHACK,SPEED);
-		}
-		if(is_pressed(DL)){
-			WRITEFLOAT_M(0x0891D200 + SET_ADDERSS_FOR_MAHACK,SPEED);
-		}
-		if(is_pressed(DD)){
-			WRITEFLOAT_P(0x0891D208 + SET_ADDERSS_FOR_MAHACK,SPEED);
-		}
-		if(is_pressed(DU)){
-			WRITEFLOAT_M(0x0891D208 + SET_ADDERSS_FOR_MAHACK,SPEED);
-		}
-	}
-}
-
-void	Create_BinFile(void){
-	//これは意味がないソースです
-	FILE *cf;
-	cf = fopen("test.bin","wb");
-	fclose(cf);
-}
-
+/*ボス妖怪作成のソース*/
 void	CreateBoss(void)
 {
-	const static u32 offset = ADDRESS;
+	const static u32 offset = ADDRESS + NEW3DS;
 	static u32 backup[YOKAI] = {0};
 	if(is_pressed(L))
 	{
