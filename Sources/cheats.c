@@ -14,7 +14,7 @@
 /*ボス妖怪作成のソース*/
 void	CreateBoss(void)
 {
-	const static u32 offset = ADDRESS + NEW3DS;
+  const static u32 offset = ADDRESS + NEW3DS;
 	static u32 backup[YOKAI] = {0};
 	if(is_pressed(L))
 	{
