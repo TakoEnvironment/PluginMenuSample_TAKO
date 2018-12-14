@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "hid.h"
 
-/**ここから下を追加してください(ここより上の部分には何が書かれてるかわかりませんが、#define SPEED ... とかは消さないで残しておいてください**/
+/**ここから下を追加してください(ここより上の部分には何が書かれてるかわかりませんが、#define SPEED ... とかは消さないで残しておいてください。すでに書いてあるものは書かなくておｋ**/
 #include "values.h"
 #define YOKAI 62
 #define ADDRESS 0x08758FA0
