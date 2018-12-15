@@ -5,7 +5,6 @@
 
 /**ここから下を追加してください(ここより上の部分には何が書かれてるかわかりませんが、#define SPEED ... とかは消さないで残しておいてください。すでに書いてあるものは書かなくておｋ**/
 #include "values.h"
-#define YOKAI 62
 #define ADDRESS 0x08758FA0
 #define JUMP 0xCC
 #define NEW3DS 0x03C00000 //←これはNEW3DSの場合は 0x03C00000 に。OLD3DSの場合は 0x00000000 にしてね！(NEW3ds → #define NEW3DS 0x03C00000 : OLD3ds → #define NEW3DS 0x00000000
